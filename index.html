@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <title>S²AM3D: Scale-controllable Part Segmentation of 3D Point Cloud</title>
+
+    <!-- Website Metadata -->
+    <meta content="S²AM3D: Scale-controllable Part Segmentation of 3D Point Cloud" name="description" />
+    <meta content="S²AM3D: Scale-controllable Part Segmentation of 3D Point Cloud" property="og:title" />
+    <meta content="Scale-controllable part-level 3D point cloud segmentation with 2D priors and 3D consistent supervision" property="og:description" />
+    <meta content="data/favicon.png" property="og:image" />
+    <meta content="S²AM3D: Scale-controllable Part Segmentation of 3D Point Cloud" property="twitter:title" />
+    <meta content="Scale-controllable part-level 3D point cloud segmentation with 2D priors and 3D consistent supervision" property="twitter:description" />
+    <meta content="data/favicon.png" property="twitter:image" />
+    <meta property="og:type" content="website" />
+    <meta content="summary_large_image" name="twitter:card" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin="anonymous" />
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="style.css" rel="stylesheet" type="text/css" />
+    <link href="data/favicon.png?v=2" rel="shortcut icon" type="image/x-icon" />
+
+    <!-- Model Viewer -->
+    <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.1.1/model-viewer.min.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Title Section -->
+        <header class="header-section">
+            <h1 class="title">
+                <span class="title-method">S<sup>2</sup>AM3D</span><span class="title-separator">: </span><span class="title-desc">Scale-controllable Part</span>
+                <br><span class="title-desc">Segmentation of 3D Point Cloud</span>
+            </h1>
+
+            <!-- Author List -->
+            <div class="author-list">
+                <span class="author">Han Su<sup>1</sup></span>
+                <span class="author">Tianyu Huang<sup>1</sup></span>
+                <span class="author">Zichen Wan<sup>1</sup></span>
+                <span class="author">XiaoHe Wu<sup>1</sup></span>
+                <span class="author">Wangmeng Zuo<sup>1*</sup></span>
+            </div>
+
+            <div class="affiliation">
+                <sup>1</sup> Harbin Institute of Technology
+            </div>
+            <div class="corresponding-author">
+                * Corresponding Author
+            </div>
+        </header>
+
+        <!-- Links Section -->
+        <div class="links-section">
+            <a href="#" class="link-btn">
+                <i class="fas fa-file-pdf"></i>
+                <span>Paper</span>
+            </a>
+            <a href="#" class="link-btn disabled">
+                <i class="fab fa-github"></i>
+                <span>Code (Coming Soon)</span>
+            </a>
+            <a href="#" class="link-btn disabled">
+                <i class="fas fa-database"></i>
+                <span>Data (Coming Soon)</span>
+            </a>
+        </div>
+
+        <!-- Scale Demo Section -->
+        <section class="section scale-demo-section">
+            <h2 class="section-title">Scale-controllable Segmentation Demo</h2>
+            <p class="section-desc">
+                Our method supports segmentation at multiple granularities.
+            </p>
+            
+            <!-- 3D Model Viewer -->
+            <div class="scale-demo-viewer">
+                <model-viewer 
+                    id="scale-demo-model"
+                    src="data/scale_demo/obj1_color.glb" 
+                    auto-rotate 
+                    camera-controls 
+                    touch-action="pan-y">
+                </model-viewer>
+            </div>
+            
+            <!-- Scale Selection -->
+            <div class="scale-selector">
+                <button class="scale-btn active" data-scale="color">Original</button>
+                <button class="scale-btn" data-scale="noscale">No Scale</button>
+                <button class="scale-btn" data-scale="scale1">Scale 1</button>
+                <button class="scale-btn" data-scale="scale2">Scale 2</button>
+                <button class="scale-btn" data-scale="scale3">Scale 3</button>
+                <button class="scale-btn" data-scale="scale4">Scale 4</button>
+            </div>
+            <p class="scale-hint">← Fine　　　　　　　　　　　　Coarse →</p>
+            
+            <!-- Object Selection -->
+            <div class="object-selector">
+                <button class="obj-btn active" data-obj="1">Object 1</button>
+                <button class="obj-btn" data-obj="2">Object 2</button>
+                <button class="obj-btn" data-obj="3">Object 3</button>
+            </div>
+        </section>
+
+        <!-- Abstract Section -->
+        <section class="section">
+            <h2 class="section-title">Abstract</h2>
+            <p class="abstract-text">
+                Part-level point cloud segmentation has recently attracted significant attention in 3D computer vision. 
+                Nevertheless, existing research is constrained by two major challenges: native 3D models lack generalization 
+                due to data scarcity, while introducing 2D pre-trained knowledge often leads to inconsistent segmentation 
+                results across different views. To address these challenges, we propose <strong>S²AM3D</strong>, which 
+                incorporates 2D segmentation priors with 3D consistent supervision. We design a <em>point-consistent part 
+                encoder</em> that aggregates multi-view 2D features through native 3D contrastive learning, producing 
+                globally consistent point features. A <em>scale-aware prompt decoder</em> is then proposed to enable 
+                real-time adjustment of segmentation granularity via continuous scale signals. Simultaneously, we introduce 
+                a large-scale, high-quality part-level point cloud dataset with more than 100k samples, providing ample 
+                supervision signals for model training. Extensive experiments demonstrate that S²AM3D achieves leading 
+                performance across multiple evaluation settings, exhibiting exceptional robustness and controllability 
+                when handling complex structures and parts with significant size variations.
+            </p>
+        </section>
+
+        <!-- Pipeline Section -->
+        <section class="section">
+            <h2 class="section-title">Method Pipeline</h2>
+            <div class="pipeline-container">
+                <img src="data/pipeline.png" alt="S²AM3D Pipeline" class="pipeline-img" />
+            </div>
+            <p class="caption">
+                <strong>S²AM3D pipeline.</strong> Left: with 3D supervision and contrastive learning, the input point cloud 
+                is encoded into per-point feature vectors. Right: given a text prompt <strong>p</strong> and a scale value <strong>s</strong>, 
+                the scale is mapped by a sinusoidal embedding to FiLM parameters that perform channel-wise modulation and 
+                produce a scale-enhanced feature representation. The prompt feature is then indexed from this representation 
+                and interacts with the global features via bi-directional cross-attention, after which an MLP and a sigmoid 
+                layer produce a probability mask.
+            </p>
+        </section>
+
+        <!-- Interactive Demo Section -->
+        <section class="section">
+            <h2 class="section-title">Interactive Segmentation Demo</h2>
+            <p class="section-desc">
+                Our method supports real-time interactive segmentation with adjustable granularity. 
+                The following videos demonstrate the interactive segmentation process on various 3D objects.
+            </p>
+            <div class="demo-grid">
+                <div class="demo-item">
+                    <video controls loop muted playsinline>
+                        <source src="data/demo/Video Screen1764146170983.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <div class="demo-item">
+                    <video controls loop muted playsinline>
+                        <source src="data/demo/Video Screen1764146279323.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <div class="demo-item">
+                    <video controls loop muted playsinline>
+                        <source src="data/demo/Video Screen1764146556517.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <div class="demo-item">
+                    <video controls loop muted playsinline>
+                        <source src="data/demo/Video Screen1764146722698.mp4" type="video/mp4">
+                    </video>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3D Mesh Gallery Section -->
+        <section class="section">
+            <h2 class="section-title">Part Segmentation Results</h2>
+            <p class="section-desc">
+                Below are 16 examples of part segmentation results. Each model can be rotated and zoomed interactively. 
+                The colored regions represent different segmented parts.
+            </p>
+            <div class="mesh-gallery">
+                <model-viewer src="data/mesh/380489de654244f2a255bca0b4f810b2.glb" auto-rotate camera-controls touch-action="pan-y"></model-viewer>
+                <model-viewer src="data/mesh/38278560b854411fb712e632ba9d96ec.glb" auto-rotate camera-controls touch-action="pan-y"></model-viewer>
+                <model-viewer src="data/mesh/3a0a2f4979eb46999401efa3de471666.glb" auto-rotate camera-controls touch-action="pan-y"></model-viewer>
+                <model-viewer src="data/mesh/3bb7addf08564165ac355c3a378476e7.glb" auto-rotate camera-controls touch-action="pan-y"></model-viewer>
+                <model-viewer src="data/mesh/3be08c8fd353437abb0dead3030ee5ec.glb" auto-rotate camera-controls touch-action="pan-y"></model-viewer>
+                <model-viewer src="data/mesh/3be0a11dd3ae425ba5584c04bf811ba6.glb" auto-rotate camera-controls touch-action="pan-y"></model-viewer>
+                <model-viewer src="data/mesh/3be2b07c8dab46dca538d21dae5b678e.glb" auto-rotate camera-controls touch-action="pan-y"></model-viewer>
+                <model-viewer src="data/mesh/3c3d5d6df8bf2053c032c4f721a6750e064344d27bf6eebd27c5c19341a3dc01.glb" auto-rotate camera-controls touch-action="pan-y"></model-viewer>
+                <model-viewer src="data/mesh/3c826eab745c4f30abb76d767f6afe67.glb" auto-rotate camera-controls touch-action="pan-y"></model-viewer>
+                <model-viewer src="data/mesh/3e32b86158234bdb9741f55b23db2d1e.glb" auto-rotate camera-controls touch-action="pan-y"></model-viewer>
+                <model-viewer src="data/mesh/3ebb5b96bbe744af8e9949b4ad58daff.glb" auto-rotate camera-controls touch-action="pan-y"></model-viewer>
+                <model-viewer src="data/mesh/3fd219cfad0242bcbe460cdbf4f6eb62.glb" auto-rotate camera-controls touch-action="pan-y"></model-viewer>
+                <model-viewer src="data/mesh/3ff5597dfebc42699dcb03f2ba022bd1.glb" auto-rotate camera-controls touch-action="pan-y"></model-viewer>
+                <model-viewer src="data/mesh/618377179d944f7f9281de48d4a259ac.glb" auto-rotate camera-controls touch-action="pan-y"></model-viewer>
+                <model-viewer src="data/mesh/63feb99c31e70a11ac7829e525e852bb0057177a854c560b607027f9a15db90c.glb" auto-rotate camera-controls touch-action="pan-y"></model-viewer>
+                <model-viewer src="data/mesh/64b59cffffb947b792c7971cba1cd60f.glb" auto-rotate camera-controls touch-action="pan-y"></model-viewer>
+            </div>
+        </section>
+
+        <!-- Dataset Section -->
+        <section class="section">
+            <h2 class="section-title">Large-scale Part-level Point Cloud Dataset</h2>
+            <p class="section-desc">
+                Using an automated data processing pipeline, we collect a dataset of over <strong>100,000</strong> point cloud 
+                instances spanning <strong>400</strong> categories, annotated with approximately <strong>1.2 million</strong> 
+                fine-grained part labels.
+            </p>
+            <div class="dataset-container">
+                <img src="data/dataset.png" alt="Dataset Overview" class="dataset-img" />
+            </div>
+        </section>
+
+        <!-- Citation Section -->
+        <section class="section citation-section">
+            <h2 class="section-title">Citation</h2>
+            <p class="citation-note">If you find this work useful, please consider citing:</p>
+            <pre class="citation-block">@article{su2025s2am3d,
+    author = {Su, Han and Huang, Tianyu and Wan, Zichen and Wu, XiaoHe and Zuo, Wangmeng},
+    title = {S²AM3D: Scale-controllable Part Segmentation of 3D Point Cloud},
+    journal = {arXiv preprint},
+    year = {2025},
+}</pre>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>
+                Website template adapted from <a href="https://yhyang-myron.github.io/SAMPart3D-website/" target="_blank">SAMPart3D</a>.
+            </p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
