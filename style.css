@@ -82,11 +82,11 @@ body {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: 28px;
+    margin-top: 18px;
     color: #111111;
-    font-size: 1.24rem;
+    font-size: 1.42rem;
     font-weight: 800;
-    letter-spacing: 0.01em;
+    letter-spacing: 0.015em;
 }
 
 .author-list {
@@ -544,8 +544,8 @@ body {
     }
 
     .venue-badge {
-        margin-bottom: 24px;
-        font-size: 1.05rem;
+        margin-top: 16px;
+        font-size: 1.18rem;
     }
 
     .links-section {
