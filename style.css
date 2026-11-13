@@ -207,6 +207,16 @@ body {
     line-height: 1.7;
 }
 
+.v2-film {
+    display: block;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    max-width: 800px;
+    margin: 0 auto;
+    border-radius: var(--radius-md);
+    background: #000;
+}
+
 /* ============================================
    Abstract Section
    ============================================ */
